@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeCoin()
+    private void TakeCoin()
     {
         _wellet.IncreaseValue();
     }

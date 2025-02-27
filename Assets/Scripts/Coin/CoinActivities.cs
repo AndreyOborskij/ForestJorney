@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CoinManager : MonoBehaviour
+public class CoinActivities : MonoBehaviour
 {
     public void ResetCoin(Coin coin, float resetTime)
     {

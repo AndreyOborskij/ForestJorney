@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private CoinManager _coinManager;
+    [SerializeField] private CoinActivities _coinActivities;
 
     private float _resetTime = 4f;
 
     public void Disappear()
     {
-        _coinManager.ResetCoin(this, _resetTime);
+        _coinActivities.ResetCoin(this, _resetTime);
     }
 }

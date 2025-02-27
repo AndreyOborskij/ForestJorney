@@ -1,24 +1,25 @@
 using UnityEngine;
 
-public class Saw : MonoBehaviour
+public class FlipperEnemy : MonoBehaviour 
 {
     [SerializeField] private Transform[] _waypoints;
 
-    private float _speed = 4f;
+    private Vector2 _direction;
     private int _correntWaypoint = 0;
 
     private void Update()
     {
-        Move();
+        Flip();
     }
 
-    private void Move()
+    private void Flip()
     {
         if (transform.position == _waypoints[_correntWaypoint].position)
         {
             _correntWaypoint = (_correntWaypoint + 1) % _waypoints.Length;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, _waypoints[_correntWaypoint].position, _speed * Time.deltaTime);
+        _direction = transform.position - _waypoints[_correntWaypoint].position;
+        transform.right = _direction;
     }
 }
