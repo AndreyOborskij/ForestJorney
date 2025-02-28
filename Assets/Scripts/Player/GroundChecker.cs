@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundCheck : MonoBehaviour
+public class GroundChecker : MonoBehaviour
 {
     public bool IsGrounded { get; private set; }
 

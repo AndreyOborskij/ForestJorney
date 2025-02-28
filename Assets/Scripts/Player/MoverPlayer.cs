@@ -2,19 +2,14 @@ using UnityEngine;
 
 public class MoverPlayer : MonoBehaviour
 {
-    private const string Horizontal = nameof(Horizontal);
-    private const string Jump = "Jump";
-
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private FlipperPlayer _flipperPlayer;
-    [SerializeField] private GroundCheck _groundCheck;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private float _jumpForce; 
+    [SerializeField] private Flipper _flipperPlayer;
+    [SerializeField] private GroundChecker _groundCheck;
+    [SerializeField] private float _jumpForce;
     [SerializeField] private float _moveSpeed;
 
     private Vector2 _movement;
-    private Rigidbody2D _rigidbody; 
-    private float _direction;
+    private Rigidbody2D _rigidbody;
 
     private void Start()
     {
@@ -23,34 +18,25 @@ public class MoverPlayer : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        _flipperPlayer.Flip(_direction);
+        Move(_inputReader.Direction);
 
-        if (Input.GetButtonDown(Jump) && _groundCheck.IsGrounded)
-        {
-            JumpAction();
-        }
-
-        UpdateAnimator();
+        Jump(_inputReader.IsJump);
     }
 
-    private void Move()
+    private void Move(float direction)
     {
-        _direction = _inputReader.Direction();
-
-        _movement = new Vector2(_direction * _moveSpeed, _rigidbody.velocity.y);
+        _movement = new Vector2(direction * _moveSpeed, _rigidbody.velocity.y);
 
         _rigidbody.velocity = _movement;
+
+        _flipperPlayer.Flip(direction);
     }
 
-    private void JumpAction()
+    private void Jump(bool isJump)
     {
-        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
-    }
-
-    private void UpdateAnimator()
-    {
-        _animator.SetFloat(PlayerAnimatorData.Params.MoveX, Mathf.Abs(_direction));
-        _animator.SetBool(PlayerAnimatorData.Params.IsGrounded, _groundCheck.IsGrounded);
+        if (isJump == true && _groundCheck.IsGrounded)
+        {
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+        }
     }
 }
