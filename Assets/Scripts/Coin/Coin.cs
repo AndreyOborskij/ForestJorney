@@ -1,13 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private CoinActivities _coinActivities;
+    public Action<Coin> Disappeared;
 
-    private float _resetTime = 4f;
+    public float ResetTime => 4f;
 
     public void Disappear()
     {
-        _coinActivities.ResetCoin(this, _resetTime);
+        Disappeared?.Invoke(this);
     }
 }
