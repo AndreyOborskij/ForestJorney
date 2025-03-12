@@ -1,12 +1,18 @@
 using UnityEngine;
 
-public class Collector : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private GroundChecker _groundChecker;
-    [SerializeField] private MoverCollector _moverCollector;
+    [SerializeField] private MoverPlayer _moverCollector;
     [SerializeField] private Flipper _flipper;
+    [SerializeField] private Collector _collector;
     [SerializeField] private Wallet _wellet;
+ 
+    private void OnEnable()
+    {
+        _collector.Took += PutOnWellet;
+    }
 
     private void FixedUpdate()
     {
@@ -17,12 +23,13 @@ public class Collector : MonoBehaviour
             _moverCollector.Jump();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable()
     {
-        if (other.gameObject.TryGetComponent(out Coin coin))
-        {
-            _wellet.IncreaseValue();
-            coin.Disappear();
-        }
+        _collector.Took -= PutOnWellet;
+    }
+
+    private void PutOnWellet()
+    {
+        _wellet.IncreaseValue();
     }
 }

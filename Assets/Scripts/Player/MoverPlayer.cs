@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoverCollector : MonoBehaviour
+public class MoverPlayer : MonoBehaviour
 {
     private float _jumpForce = 7f;
     private float _moveSpeed = 5f;
