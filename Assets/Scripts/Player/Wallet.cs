@@ -4,7 +4,7 @@ public class Wallet : MonoBehaviour
 {
     private int _countCoin = 0;
 
-    public void IncreaseValue() 
+    public void IncreaseItem() 
     {
         _countCoin++;
     }

@@ -2,20 +2,50 @@ using UnityEngine;
 
 public class Patrol : MonoBehaviour
 {
+    [SerializeField] private ContactTracker _contactTracker;
     [SerializeField] private MoverEnemy _moverEnemy;
+    [SerializeField] private Follower _follower;
 
     private Transform _waypoint;
+    private Player _purpose;
     private int _correntWaypoint = 0;
     private float _direction;
+    private bool _isCome;
+
+    private void OnEnable()
+    {
+        _contactTracker.Came += DefinePlayer;
+        _contactTracker.Left += StopFollow;
+    }
+
+    private void OnDisable()
+    {
+        _contactTracker.Came -= DefinePlayer;
+        _contactTracker.Left -= StopFollow;
+    }
 
     public void MoveAround(Transform[] waypoints)
     {
-        _moverEnemy.Move(ChackWaypoint(waypoints));
+        if (_isCome == true)
+        {
+            _follower.Move(_purpose);
+        }
+        else
+        {
+            _moverEnemy.Move(ChackWaypoint(waypoints));
+        }
     }
 
     public float DetermineDirection()
     {
-        _direction = transform.position.x - _waypoint.position.x;
+        if (_isCome == true)
+        {
+            _direction = transform.position.x - _purpose.transform.position.x;
+        }
+        else
+        {
+            _direction = transform.position.x - _waypoint.position.x;
+        }
 
         return _direction;
     }
@@ -30,5 +60,17 @@ public class Patrol : MonoBehaviour
         _waypoint = waypoints[_correntWaypoint];
 
         return _waypoint;
+    }    
+
+    private void DefinePlayer(Player player)
+    {
+        _purpose = player;
+        _isCome = true;
+    }
+
+    private void StopFollow()
+    {
+        _purpose = null;
+        _isCome = false;
     }
 }
