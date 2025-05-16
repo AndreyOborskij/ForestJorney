@@ -1,20 +1,44 @@
+using System.Collections;
 using UnityEngine;
 
 public class BaseballBat : MonoBehaviour 
 {
+    [SerializeField] private ChangerBasebalBatAnimations _changerBasebalBatAnimations;
+    [SerializeField] private InputReader _inputReader;
+
+    private Collider2D _collider;
+
     private void Start()
     {
-        this.gameObject.SetActive(false);
+        _collider = GetComponent<Collider2D>();
+        _collider.enabled = false;
     }
 
-    public void Activate()
+    private void Update()
     {
-        this.gameObject.SetActive(true);
+        if (_inputReader.GetIsHit())
+        {
+            StartCoroutine(Hit());
+        }
     }
 
-    public void Deactivate()
+    private IEnumerator Hit()
     {
-        this.gameObject.SetActive(false);
+        Activate();
+        _changerBasebalBatAnimations.UpdateHit();
+
+        yield return new WaitForSeconds(2f);
+        Deactivate();
+    }
+
+    private void Activate()
+    {
+        _collider.enabled = true;
+    }
+
+    private void Deactivate()
+    {
+        _collider.enabled = false;
     }
 }
 

@@ -10,7 +10,7 @@ public class Ñollector : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Coin coin))
         {
-            coin.Disappear();
+            coin.Collect();
             Took?.Invoke();
         }
 

@@ -32,14 +32,17 @@ public class SpawnerHearts : MonoBehaviour
 
     private void DeterminePosition()
     {
-        _spawnPoint = Random.Range(0,_spawnPositions.Length);
+        _spawnPoint = Random.Range(0, _spawnPositions.Length);
 
         _heart.transform.position = _spawnPositions[_spawnPoint].position;
     }
 
-    private void Spawn(Heart heart)
+    private void Spawn(Item item)
     {
-        StartCoroutine(Respawn(heart));
+        if (item is Heart heart)
+        {
+            StartCoroutine(Respawn(heart));
+        }
     }
 
     private IEnumerator Respawn(Heart heart)

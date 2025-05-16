@@ -5,16 +5,22 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private AttackChecker _attackChecker;
-    [SerializeField] private MoverPlayer _moverCollector;
+    [SerializeField] private Mover _moverCollector;
     [SerializeField] private Flipper _flipper;
     [SerializeField] private Ñollector _collector;  
     [SerializeField] private Wallet _wellet;
     [SerializeField] private Healthbar _healthbar;
+    [SerializeField] private ChangerPlayerAnimations _changerPlayerAnimations;
 
     private void OnEnable()
     {
         _collector.Took += PutOnWellet;
         _collector.Healed += TakeHealth;
+    }
+
+    private void Update()
+    {
+        MakeActions();
     }
 
     private void FixedUpdate()
@@ -32,9 +38,14 @@ public class Player : MonoBehaviour
         _collector.Healed -= TakeHealth;
     }
 
-    private void PutOnWellet()
+    public void TakeHealth(int heal)
     {
-        _wellet.IncreaseItem();
+        _healthbar.IncreaseValue(heal);
+    }
+
+    public void RunAway()
+    {
+        _attackChecker.AvoidHit();
     }
 
     public void TakeDamage(int damage)
@@ -43,13 +54,15 @@ public class Player : MonoBehaviour
         _attackChecker.TakeHit();
     }
 
-    public void TakeHealth(int heal)
+    private void PutOnWellet()
     {
-        _healthbar.IncreaseValue(heal);
-    }    
+        _wellet.IncreaseItem();
+    }
 
-    public void RunAway()
+    private void MakeActions()
     {
-        _attackChecker.AvoidHit();
+        _changerPlayerAnimations.UpdateMovement(_inputReader.Direction);
+        _changerPlayerAnimations.UpdateJump(_groundChecker.IsGrounded);
+        _changerPlayerAnimations.UpdateTakeDamage(_attackChecker.IsAttacked);
     }
 }

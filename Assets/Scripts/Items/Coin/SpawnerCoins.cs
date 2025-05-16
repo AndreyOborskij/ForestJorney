@@ -17,17 +17,20 @@ public class SpawnerCoins : MonoBehaviour
         {
             Coin coin = Instantiate(_prefabCoin);
 
-            coin.Disappeared += ResetCoin;
+            coin.Collected += ResetCoin;
 
             coin.transform.position = _spawnPoints[i].position;
         }
     }
 
-    private void ResetCoin(Coin coin)
+    private void ResetCoin(Item item)
     {
-        coin.Disappeared -= ResetCoin;
+        if (item is Coin coin)
+        {
+            coin.Collected -= ResetCoin;
 
-        StartCoroutine(ReloadCoin(coin, coin.ResetTime));
+            StartCoroutine(ReloadCoin(coin, coin.ResetTime));
+        }
     }
 
     private IEnumerator ReloadCoin(Coin coin, float resetTime)
@@ -38,7 +41,7 @@ public class SpawnerCoins : MonoBehaviour
 
         yield return wait;
 
-        coin.Disappeared += ResetCoin;
+        coin.Collected += ResetCoin;
         coin.gameObject.SetActive(true);
     }
 }
