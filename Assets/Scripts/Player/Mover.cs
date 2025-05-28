@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Mover : MonoBehaviour
 {
     private float _jumpForce = 7f;

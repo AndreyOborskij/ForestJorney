@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ContactTracker : MonoBehaviour
 {
-    public Action<Player> Came;
-    public Action Left;
+    public event Action<Player> Came;
+    public event Action Left;
 
     public void OnTriggerEnter2D(Collider2D other)
     {

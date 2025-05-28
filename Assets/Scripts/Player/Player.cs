@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Flipper _flipper;
     [SerializeField] private Ñollector _collector;  
     [SerializeField] private Wallet _wellet;
-    [SerializeField] private Healthbar _healthbar;
+    [SerializeField] private Health _healthbar;
     [SerializeField] private ChangerPlayerAnimations _changerPlayerAnimations;
 
     private void OnEnable()

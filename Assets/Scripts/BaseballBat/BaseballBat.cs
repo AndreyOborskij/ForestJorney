@@ -1,12 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
+
 public class BaseballBat : MonoBehaviour 
 {
     [SerializeField] private ChangerBasebalBatAnimations _changerBasebalBatAnimations;
     [SerializeField] private InputReader _inputReader;
 
     private Collider2D _collider;
+    private Coroutine _hit;
+    private float _refreshHit = 2f;
 
     private void Start()
     {
@@ -18,7 +22,7 @@ public class BaseballBat : MonoBehaviour
     {
         if (_inputReader.GetIsHit())
         {
-            StartCoroutine(Hit());
+            StartHit();
         }
     }
 
@@ -27,8 +31,18 @@ public class BaseballBat : MonoBehaviour
         Activate();
         _changerBasebalBatAnimations.UpdateHit();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(_refreshHit);
         Deactivate();
+    }
+
+    private void StartHit()
+    {
+        if (_hit != null)
+        {
+            StopCoroutine(_hit);
+        }
+
+        _hit = StartCoroutine(Hit());
     }
 
     private void Activate()
@@ -39,6 +53,7 @@ public class BaseballBat : MonoBehaviour
     private void Deactivate()
     {
         _collider.enabled = false;
+        StopCoroutine(_hit);
     }
 }
 

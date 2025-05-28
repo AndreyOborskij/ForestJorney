@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Ñollector : MonoBehaviour
 {
-    public Action Took;
-    public Action<int> Healed;
+    public event Action Took;
+    public event Action<int> Healed;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
