@@ -12,7 +12,7 @@ public class BaseballBat : MonoBehaviour
     private Coroutine _hit;
     private float _refreshHit = 2f;
 
-    private void Start()
+    private void Awake()
     {
         _collider = GetComponent<Collider2D>();
         _collider.enabled = false;

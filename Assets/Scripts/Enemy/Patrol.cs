@@ -4,7 +4,6 @@ public class Patrol : MonoBehaviour
 {
     [SerializeField] private ContactTracker _contactTracker;
     [SerializeField] private MoverEnemy _moverEnemy;
-    [SerializeField] private Follower _follower;
 
     private Transform _waypoint;
     private Player _purpose;
@@ -28,7 +27,7 @@ public class Patrol : MonoBehaviour
     {
         if (_isCome == true)
         {
-            _follower.Move(_purpose);
+            _moverEnemy.Move(_purpose.transform.position);
         }
         else
         {
@@ -50,7 +49,7 @@ public class Patrol : MonoBehaviour
         return _direction;
     }
 
-    private Transform ChackWaypoint(Transform[] waypoints)
+    private Vector2 ChackWaypoint(Transform[] waypoints)
     {
         if (transform.position == waypoints[_correntWaypoint].position)
         {
@@ -59,7 +58,7 @@ public class Patrol : MonoBehaviour
 
         _waypoint = waypoints[_correntWaypoint];
 
-        return _waypoint;
+        return _waypoint.transform.position;
     }    
 
     private void DefinePlayer(Player player)
