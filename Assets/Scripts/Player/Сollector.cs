@@ -8,16 +8,18 @@ public class Ñollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out Coin coin))
+        if (other.gameObject.TryGetComponent(out ItemObject item))
         {
-            coin.Collect();
-            Took?.Invoke();
-        }
-
-        if(other.gameObject.TryGetComponent(out Heart heart))
-        {
-            heart.Collect();
-            Healed?.Invoke(heart.HealPower);
+            if (item is Coin coin)
+            {
+                coin.Collect();
+                Took?.Invoke();
+            }
+            else if (item is Heart heart)
+            {
+                heart.Collect();
+                Healed?.Invoke(heart.HealPower);
+            }
         }
     }
 }

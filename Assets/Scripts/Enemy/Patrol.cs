@@ -31,7 +31,7 @@ public class Patrol : MonoBehaviour
         }
         else
         {
-            _moverEnemy.Move(ChackWaypoint(waypoints));
+            _moverEnemy.Move(ÑhooseWaypoint(waypoints));
         }
     }
 
@@ -49,7 +49,7 @@ public class Patrol : MonoBehaviour
         return _direction;
     }
 
-    private Vector2 ChackWaypoint(Transform[] waypoints)
+    private Vector2 ÑhooseWaypoint(Transform[] waypoints)
     {
         if (transform.position == waypoints[_correntWaypoint].position)
         {

@@ -1,7 +1,5 @@
-public class Coin : Item
+public class Coin : ItemLogic<Coin>
 {
-    public float ResetTime => 4f;
-
     public override void Collect()
     {
         NotifyCollected();

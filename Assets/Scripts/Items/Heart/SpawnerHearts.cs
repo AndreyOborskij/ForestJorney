@@ -1,59 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpawnerHearts : MonoBehaviour
+public class SpawnerHearts : SpawnerItems<Heart>
 {
     [SerializeField] private Heart _prefabHeart;
     [SerializeField] private Transform[] _spawnPositions;
 
-    private Heart _heart;
-    private int _spawnPoint;
-    private float _resetTime = 2f;
-
-    private void Awake()
+    protected override void SpawnItems()
     {
-        _heart = Instantiate(_prefabHeart);
+        var heart = Instantiate(_prefabHeart);
+
+        heart.transform.position = GetSpawnPosition();
+
+        RegisterItem(heart);
     }
 
-    private void OnEnable()
+    protected override IEnumerator Respawn(Heart item)
     {
-        _heart.Collected += Spawn;
+        item.transform.position = GetSpawnPosition();
+        return base.Respawn(item);
     }
 
-    private void Start()
+    private Vector2 GetSpawnPosition()
     {
-        DeterminePosition();
-    }
-
-    private void OnDisable()
-    {
-        _heart.Collected -= Spawn;
-    }
-
-    private void DeterminePosition()
-    {
-        _spawnPoint = Random.Range(0, _spawnPositions.Length);
-
-        _heart.transform.position = _spawnPositions[_spawnPoint].position;
-    }
-
-    private void Spawn(Item item)
-    {
-        if (item is Heart heart)
-        {
-            StartCoroutine(Respawn(heart));
-        }
-    }
-
-    private IEnumerator Respawn(Heart heart)
-    {
-        var wait = new WaitForSeconds(_resetTime);
-
-        heart.gameObject.SetActive(false);
-
-        yield return wait;
-
-        DeterminePosition();
-        heart.gameObject.SetActive(true);
+        int index = Random.Range(0, _spawnPositions.Length);
+        return _spawnPositions[index].position;
     }
 }

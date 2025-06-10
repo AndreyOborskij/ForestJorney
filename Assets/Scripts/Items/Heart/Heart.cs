@@ -1,8 +1,6 @@
-public class Heart : Item
+public class Heart : ItemLogic<Heart>
 {
-    private int _healPower = 10;
-
-    public int HealPower => _healPower;
+    public int HealPower => 10;
 
     public override void Collect()
     {
