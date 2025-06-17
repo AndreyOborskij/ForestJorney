@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Ñollector : MonoBehaviour
+public class Collector : MonoBehaviour
 {
     public event Action Took;
     public event Action<int> Healed;

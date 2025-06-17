@@ -10,25 +10,21 @@ public class Health : MonoBehaviour
 
     public void DecreaseValue(int damage)
     {
-        if (_currentValue - damage < _minValue)
-        {
-            _currentValue = _minValue;
+        if (damage < 0) 
+        {            
+            return;
         }
-        else
-        {
-            _currentValue -= damage;
-        }
+
+        _currentValue = Mathf.Max(_currentValue - damage, _minValue);
     }
 
     public void IncreaseValue(int heal)
     {
-        if (_currentValue + heal > _maxValue)
+        if (heal < 0)
         {
-            _currentValue = _maxValue;
+            return;
         }
-        else
-        {
-            _currentValue += heal;
-        }
+
+        _currentValue = Mathf.Min(_currentValue + heal, _maxValue);
     }
 }

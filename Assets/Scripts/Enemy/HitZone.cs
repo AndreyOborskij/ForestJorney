@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class HitZone : MonoBehaviour
 {
-    public event Action<Player> Comming;
+    public event Action Comming;
     public event Action Left;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
-            Comming?.Invoke(player);
+            Comming?.Invoke();
         }
     }
 

@@ -7,20 +7,24 @@ public class Player : MonoBehaviour
     [SerializeField] private AttackChecker _attackChecker;
     [SerializeField] private Mover _moverCollector;
     [SerializeField] private Flipper _flipper;
-    [SerializeField] private Ñollector _collector;  
+    [SerializeField] private Collector _collector;
     [SerializeField] private Wallet _wellet;
-    [SerializeField] private Health _healthbar;
+    [SerializeField] private Health _health;
     [SerializeField] private ChangerPlayerAnimations _changerPlayerAnimations;
+    [SerializeField] private Hit[] _hit;
 
     private void OnEnable()
     {
         _collector.Took += PutOnWellet;
         _collector.Healed += TakeHealth;
+
+        foreach (var hit in _hit)
+            hit.DealtDamage += TakeDamage;
     }
 
     private void Update()
     {
-        MakeActions();
+        Move();
     }
 
     private void FixedUpdate()
@@ -36,22 +40,19 @@ public class Player : MonoBehaviour
     {
         _collector.Took -= PutOnWellet;
         _collector.Healed -= TakeHealth;
+
+        foreach (var hit in _hit)
+            hit.DealtDamage -= TakeDamage;
     }
 
-    public void TakeHealth(int heal)
+    private void TakeHealth(int heal)
     {
-        _healthbar.IncreaseValue(heal);
+        _health.IncreaseValue(heal);
     }
 
-    public void RunAway()
+    private void TakeDamage(int damage)
     {
-        _attackChecker.AvoidHit();
-    }
-
-    public void TakeDamage(int damage)
-    {
-        _healthbar.DecreaseValue(damage);
-        _attackChecker.TakeHit();
+        _health.DecreaseValue(damage);
     }
 
     private void PutOnWellet()
@@ -59,10 +60,10 @@ public class Player : MonoBehaviour
         _wellet.IncreaseItem();
     }
 
-    private void MakeActions()
+    private void Move()
     {
         _changerPlayerAnimations.UpdateMovement(_inputReader.Direction);
         _changerPlayerAnimations.UpdateJump(_groundChecker.IsGrounded);
-        _changerPlayerAnimations.UpdateTakeDamage(_attackChecker.IsAttacked);
+        _changerPlayerAnimations.UpdateDealDamage(_attackChecker.IsAttacked);
     }
 }

@@ -1,14 +1,25 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemLogic<T>
+public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemObject<T>
 {
+    [SerializeField] protected T _itemPrefab;
+    [SerializeField] protected Transform[] _spawnPoints;
+
     protected virtual void Start()
     {
         SpawnItems();
     }
 
-    protected abstract void SpawnItems();
+    protected virtual void SpawnItems()
+    {
+        for (int i = 0; i < _spawnPoints.Length; i++)
+        {
+            T item = Instantiate(_itemPrefab);
+            item.transform.position = _spawnPoints[i].transform.position; 
+            RegisterItem(item);
+        }
+    }
 
     protected void RegisterItem(T item)
     {

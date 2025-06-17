@@ -19,7 +19,6 @@ public class ContactTracker : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Player player))
         {
             Left?.Invoke();
-            player.RunAway();
         }
     }
 }

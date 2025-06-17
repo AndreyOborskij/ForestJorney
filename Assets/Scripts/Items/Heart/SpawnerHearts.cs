@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class SpawnerHearts : SpawnerItems<Heart>
 {
-    [SerializeField] private Heart _prefabHeart;
-    [SerializeField] private Transform[] _spawnPositions;
-
     protected override void SpawnItems()
     {
-        var heart = Instantiate(_prefabHeart);
+        var heart = Instantiate(_itemPrefab);
 
         heart.transform.position = GetSpawnPosition();
 
@@ -23,7 +20,7 @@ public class SpawnerHearts : SpawnerItems<Heart>
 
     private Vector2 GetSpawnPosition()
     {
-        int index = Random.Range(0, _spawnPositions.Length);
-        return _spawnPositions[index].position;
+        int index = Random.Range(0, _spawnPoints.Length);
+        return _spawnPoints[index].position;
     }
 }

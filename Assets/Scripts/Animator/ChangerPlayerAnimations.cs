@@ -14,7 +14,7 @@ public class ChangerPlayerAnimations : MonoBehaviour
         _animator.SetBool(PlayerAnimatorData.Params.IsGrounded, isJump);
     }
 
-    public void UpdateTakeDamage(bool isAttacked)
+    public void UpdateDealDamage(bool isAttacked)
     {
         _animator.SetBool(PlayerAnimatorData.Params.IsAttacked, isAttacked);
     }

@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
     [SerializeField] private HitZone _hitZone;
+
+    public Action<int> DealtDamage;
 
     private Coroutine _action;
     private int _damage = 10;
@@ -22,10 +25,10 @@ public class Hit : MonoBehaviour
         _hitZone.Left -= ReturnPatrol;
     }
 
-    private void TakeDamage(Player player)
+    private void TakeDamage()
     {
         _isCome = true;
-        _action = StartCoroutine(Attack(player));
+        _action = StartCoroutine(Attack());
     }
 
     private void ReturnPatrol()
@@ -38,13 +41,13 @@ public class Hit : MonoBehaviour
         }
     }
 
-    private IEnumerator Attack(Player player)
+    private IEnumerator Attack()
     {
         var wait = new WaitForSeconds(_refresh);
 
         if (_isCome == true)
         {
-            player.TakeDamage(_damage);
+            DealtDamage?.Invoke(_damage);
 
             yield return wait;
         }
