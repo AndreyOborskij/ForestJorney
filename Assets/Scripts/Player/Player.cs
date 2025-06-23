@@ -10,17 +10,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Wallet _wellet;
     [SerializeField] private Health _health;
     [SerializeField] private ChangerPlayerAnimations _changerPlayerAnimations;
-    [SerializeField] private Hit[] _hit;
+    [SerializeField] private Weapon[] _wapon;
 
     private void OnEnable()
     {
         _collector.Took += PutOnWellet;
         _collector.Healed += TakeHealth;
 
-        foreach (var hit in _hit)
+        foreach (var wapon in _wapon)
         {
-            hit.DealtDamage += TakeDamage;
-            hit.StoppedDamage += EndHitReaction;
+            wapon.AttackedDamage += TakeDamage;
+            wapon.StoppedDamage += EndHitReaction;
         }
 
         _health.Damaged += StartHitReaction;
@@ -45,9 +45,9 @@ public class Player : MonoBehaviour
         _collector.Took -= PutOnWellet;
         _collector.Healed -= TakeHealth;
 
-        foreach (var hit in _hit)
+        foreach (var hit in _wapon)
         {
-            hit.DealtDamage -= TakeDamage;
+            hit.AttackedDamage -= TakeDamage;
             hit.StoppedDamage -= EndHitReaction;
         }
 

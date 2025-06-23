@@ -1,1 +1,1 @@
-public class Coin : ItemObject<Coin> {}
+public class Coin : ItemBehaviour<Coin> {}

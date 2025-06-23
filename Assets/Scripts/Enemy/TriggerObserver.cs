@@ -6,7 +6,7 @@ public abstract class TriggerObserver : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            PlayerCame(player);
+            CamePlayer(player);
         }
     }
 
@@ -14,10 +14,10 @@ public abstract class TriggerObserver : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            PlayerLeft(player);
+            LeftPlayer(player);
         }
     }
 
-    protected abstract void PlayerCame(Player player); //COME неправильный глагол прошедшее время CAME
-    protected abstract void PlayerLeft(Player player); //LEAVE неправильный глагол прошедшее время LEFT
+    protected abstract void CamePlayer(Player player); 
+    protected abstract void LeftPlayer(Player player); 
 }

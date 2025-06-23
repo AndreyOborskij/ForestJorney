@@ -1,6 +1,6 @@
 using System;
 
-public abstract class ItemObject<T> : ItemObject where T : ItemObject<T>
+public abstract class ItemBehaviour<T> : ItemObject where T : ItemBehaviour<T>
 {
     public event Action<T> Collected;
 

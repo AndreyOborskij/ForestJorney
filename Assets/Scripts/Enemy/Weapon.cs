@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Hit : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField] private HitZone _hitZone;
 
-    public Action<int> DealtDamage; //DEAL неправильный глагол прошедшее время DEALT
+    public Action<int> AttackedDamage; 
     public Action StoppedDamage;
 
     private Coroutine _action;
@@ -50,7 +50,7 @@ public class Hit : MonoBehaviour
 
         if (_isCome == true)
         {
-            DealtDamage?.Invoke(_damage);
+            AttackedDamage?.Invoke(_damage);
 
             yield return wait;
         }

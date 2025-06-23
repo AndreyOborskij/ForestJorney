@@ -3,14 +3,14 @@ using System;
 public class HitZone : TriggerObserver
 {
     public event Action Comming;
-    public event Action Left; //LEAVE неправильный глагол прошедшее время LEFT
+    public event Action Left;
 
-    protected override void PlayerCame(Player player)
+    protected override void CamePlayer(Player player)
     {
         Comming?.Invoke();
     }
 
-    protected override void PlayerLeft(Player player)
+    protected override void LeftPlayer(Player player)
     {
         Left?.Invoke();
     }

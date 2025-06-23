@@ -2,15 +2,15 @@ using System;
 
 public class ContactTracker : TriggerObserver
 {
-    public event Action<Player> Came; //COME неправильный глагол прошедшее время CAME
-    public event Action Left; //LEAVE неправильный глагол прошедшее время LEFT
+    public event Action<Player> Came; 
+    public event Action Left; 
 
-    protected override void PlayerCame(Player player)
+    protected override void CamePlayer(Player player)
     {
         Came?.Invoke(player);
     }
 
-    protected override void PlayerLeft(Player player)
+    protected override void LeftPlayer(Player player)
     {
         Left?.Invoke();
     }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemObject<T>
+public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemBehaviour<T>
 {
     [SerializeField] protected T _itemPrefab;
     [SerializeField] protected Transform[] _spawnPoints;
