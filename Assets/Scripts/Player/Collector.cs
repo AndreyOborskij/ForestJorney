@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    public event Action Took;
+    public event Action Took; //TAKE неправильный глагол прошедшее время TOOK
     public event Action<int> Healed;
 
     private void OnTriggerEnter2D(Collider2D other)

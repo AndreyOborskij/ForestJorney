@@ -33,8 +33,12 @@ public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemObject<T>
 
     protected virtual IEnumerator Respawn(T item)
     {
+        item.Collected -= ItemCollected;
+
         item.gameObject.SetActive(false);
+
         yield return new WaitForSeconds(item.ResetTime);
+
         item.gameObject.SetActive(true);
     }
 }

@@ -1,24 +1,17 @@
 using System;
-using UnityEngine;
 
-public class HitZone : MonoBehaviour
+public class HitZone : TriggerObserver
 {
     public event Action Comming;
-    public event Action Left;
+    public event Action Left; //LEAVE неправильный глагол прошедшее время LEFT
 
-    public void OnTriggerEnter2D(Collider2D other)
+    protected override void PlayerCame(Player player)
     {
-        if (other.gameObject.TryGetComponent(out Player player))
-        {
-            Comming?.Invoke();
-        }
+        Comming?.Invoke();
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    protected override void PlayerLeft(Player player)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
-        {
-            Left?.Invoke();
-        }
+        Left?.Invoke();
     }
 }

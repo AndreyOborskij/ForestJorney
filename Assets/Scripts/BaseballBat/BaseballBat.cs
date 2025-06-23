@@ -11,6 +11,9 @@ public class BaseballBat : MonoBehaviour
     private Collider2D _collider;
     private Coroutine _hit;
     private float _refreshHit = 2f;
+    private int _powerHit = int.MaxValue;
+
+    public int PowerHit => _powerHit;
 
     private void Awake()
     {

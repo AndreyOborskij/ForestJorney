@@ -6,7 +6,8 @@ public class Hit : MonoBehaviour
 {
     [SerializeField] private HitZone _hitZone;
 
-    public Action<int> DealtDamage;
+    public Action<int> DealtDamage; //DEAL неправильный глагол прошедшее время DEALT
+    public Action StoppedDamage;
 
     private Coroutine _action;
     private int _damage = 10;
@@ -15,25 +16,27 @@ public class Hit : MonoBehaviour
 
     private void OnEnable()
     {
-        _hitZone.Comming += TakeDamage;
-        _hitZone.Left += ReturnPatrol;
+        _hitZone.Comming += Strike;
+        _hitZone.Left += StopStrike;
     }
 
     private void OnDisable()
     {
-        _hitZone.Comming -= TakeDamage;
-        _hitZone.Left -= ReturnPatrol;
+        _hitZone.Comming -= Strike;
+        _hitZone.Left -= StopStrike;
     }
 
-    private void TakeDamage()
+    private void Strike()
     {
         _isCome = true;
         _action = StartCoroutine(Attack());
     }
 
-    private void ReturnPatrol()
+    private void StopStrike()
     {
         _isCome = false;
+        
+        StoppedDamage?.Invoke();
 
         if (_action != null)
         {

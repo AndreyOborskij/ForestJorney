@@ -1,24 +1,17 @@
 using System;
-using UnityEngine;
 
-public class ContactTracker : MonoBehaviour
+public class ContactTracker : TriggerObserver
 {
-    public event Action<Player> Came;
-    public event Action Left;
+    public event Action<Player> Came; //COME неправильный глагол прошедшее время CAME
+    public event Action Left; //LEAVE неправильный глагол прошедшее время LEFT
 
-    public void OnTriggerEnter2D(Collider2D other)
+    protected override void PlayerCame(Player player)
     {
-        if (other.gameObject.TryGetComponent(out Player player))
-        {
-            Came?.Invoke(player);
-        }
+        Came?.Invoke(player);
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    protected override void PlayerLeft(Player player)
     {
-        if (other.gameObject.TryGetComponent(out Player player))
-        {
-            Left?.Invoke();
-        }
+        Left?.Invoke();
     }
 }
