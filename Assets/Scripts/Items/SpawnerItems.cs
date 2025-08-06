@@ -39,6 +39,8 @@ public abstract class SpawnerItems<T> : MonoBehaviour where T : ItemBehaviour<T>
 
         yield return new WaitForSeconds(item.ResetTime);
 
+        item.Collected += ItemCollected;
+
         item.gameObject.SetActive(true);
     }
 }

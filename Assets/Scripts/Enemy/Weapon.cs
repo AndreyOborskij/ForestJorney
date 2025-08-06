@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     private Coroutine _action;
     private int _damage = 10;
-    private float _refresh = 2f;
+    private float _refresh = 1f;
     private bool _isCome = false;
 
     private void OnEnable()
@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
     {
         var wait = new WaitForSeconds(_refresh);
 
-        if (_isCome == true)
+        while (_isCome == true)
         {
             AttackedDamage?.Invoke(_damage);
 

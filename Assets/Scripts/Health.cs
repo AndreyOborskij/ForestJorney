@@ -7,11 +7,13 @@ public class Health : MonoBehaviour
     private int _minValue = 0;
 
     public int CurrentValue { get; private set; }
+    public int MaxValume => _maxValue;
 
     public event Action Damaged;
     public event Action Died;
+    public event Action Cured;
 
-    private void Start()
+    private void Awake()
     {
         CurrentValue = _maxValue;
     }
@@ -41,5 +43,7 @@ public class Health : MonoBehaviour
         }
 
         CurrentValue = Mathf.Min(CurrentValue + heal, _maxValue);
+
+        Cured?.Invoke();
     }
 }
