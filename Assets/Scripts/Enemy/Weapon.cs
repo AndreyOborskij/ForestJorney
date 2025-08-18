@@ -6,11 +6,11 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private HitZone _hitZone;
 
-    public Action<int> AttackedDamage; 
+    public Action<float> AttackedDamage; 
     public Action StoppedDamage;
 
     private Coroutine _action;
-    private int _damage = 10;
+    private float _damage = 10;
     private float _refresh = 1f;
     private bool _isCome = false;
 

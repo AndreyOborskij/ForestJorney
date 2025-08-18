@@ -54,12 +54,12 @@ public class Player : MonoBehaviour
         _health.Damaged -= StartHitReaction;
     }
 
-    private void TakeHealth(int heal)
+    private void TakeHealth(float heal)
     {
         _health.IncreaseValue(heal);
     }
 
-    private void TakeDamage(int damage)
+    private void TakeDamage(float damage)
     {
         _health.DecreaseValue(damage);
     }

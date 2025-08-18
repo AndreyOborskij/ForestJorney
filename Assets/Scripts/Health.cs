@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private int _maxValue = 100;
-    private int _minValue = 0;
+    private float _maxValue = 100f;
+    private float _minValue = 0f;
 
-    public int CurrentValue { get; private set; }
-    public int MaxValume => _maxValue;
+    public float CurrentValue { get; private set; }
+    public float MaxValume => _maxValue;
 
     public event Action Damaged;
     public event Action Died;
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         CurrentValue = _maxValue;
     }
 
-    public void DecreaseValue(int damage)
+    public void DecreaseValue(float damage)
     {
         if (damage < 0)
         {
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void IncreaseValue(int heal)
+    public void IncreaseValue(float heal)
     {
         if (heal < 0)
         {

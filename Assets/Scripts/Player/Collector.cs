@@ -4,7 +4,7 @@ using UnityEngine;
 public class Collector : MonoBehaviour
 {
     public event Action Took; 
-    public event Action<int> Healed;
+    public event Action<float> Healed;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
