@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
         _health.Died -= Die;
     }
 
+    public void LoseHealth(float damage)
+    {
+        _health.DecreaseValue(damage);
+    }
+
     private void SeePlayer(Player player)
     {
         _player = player;

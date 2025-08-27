@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
     private const string Horizontal = nameof(Horizontal);
     private const string Jump = nameof(Jump);
+
+    public event Action<bool> Interacted;
 
     private bool _isJump;
     private bool _isHit;
@@ -20,6 +23,9 @@ public class InputReader : MonoBehaviour
 
         if (Input.GetMouseButtonDown(_hit))
             _isHit = true;
+
+        if (Input.GetKeyDown(KeyCode.F))
+            Interacted?.Invoke(true);
     }
 
     public bool GetIsJump() => GetBoolAsTrigger(ref _isJump);

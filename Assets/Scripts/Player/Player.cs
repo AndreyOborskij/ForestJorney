@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Health _health;
     [SerializeField] private ChangerPlayerAnimations _changerPlayerAnimations;
     [SerializeField] private Weapon[] _weapon;
+    [SerializeField] private LifeSteal _lifeSteal;
 
     private void OnEnable()
     {
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         }
 
         _health.Damaged += StartHitReaction;
+        _lifeSteal.Stole += TakeHealth;
     }
 
     private void Update()
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour
         }
 
         _health.Damaged -= StartHitReaction;
+        _lifeSteal.Stole -= TakeHealth;
     }
 
     private void TakeHealth(float heal)

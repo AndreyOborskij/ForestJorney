@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 2898121855c9993468f84db940af3508
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vampire-icon-vector_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 980
+        height: 980
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: 326}
+        - {x: 76, y: 340}
+        - {x: 36, y: 350}
+        - {x: -17, y: 353}
+        - {x: -71, y: 343}
+        - {x: -101, y: 331}
+        - {x: -132, y: 315}
+        - {x: -185, y: 270}
+        - {x: -222, y: 221}
+        - {x: -245, y: 172}
+        - {x: -259, y: 124}
+        - {x: -265, y: 77}
+        - {x: -301, y: 78}
+        - {x: -333, y: 73}
+        - {x: -367, y: 63}
+        - {x: -396, y: 49}
+        - {x: -340, y: 11}
+        - {x: -294, y: -28}
+        - {x: -265, y: -56}
+        - {x: -235, y: -93}
+        - {x: -221, y: -110}
+        - {x: -213, y: -126}
+        - {x: -195, y: -152}
+        - {x: -165, y: -186}
+        - {x: -135, y: -209}
+        - {x: -120, y: -220}
+        - {x: -99, y: -231}
+        - {x: -61, y: -248}
+        - {x: -16, y: -255}
+        - {x: 34, y: -253}
+        - {x: 65, y: -245}
+        - {x: 97, y: -232}
+        - {x: 149, y: -197}
+        - {x: 173, y: -174}
+        - {x: 192, y: -151}
+        - {x: 210, y: -126}
+        - {x: 218, y: -112}
+        - {x: 229, y: -98}
+        - {x: 257, y: -64}
+        - {x: 289, y: -31}
+        - {x: 323, y: -1}
+        - {x: 361, y: 28}
+        - {x: 394, y: 49}
+        - {x: 367, y: 63}
+        - {x: 341, y: 71}
+        - {x: 298, y: 78}
+        - {x: 262, y: 78}
+        - {x: 258, y: 108}
+        - {x: 251, y: 145}
+        - {x: 237, y: 184}
+        - {x: 214, y: 228}
+        - {x: 181, y: 271}
+        - {x: 143, y: 305}
+      - - {x: 104, y: -373}
+        - {x: 80, y: -368}
+        - {x: 51, y: -356}
+        - {x: 29, y: -343}
+        - {x: 13, y: -330}
+        - {x: -1, y: -333}
+        - {x: -14, y: -332}
+        - {x: -27, y: -342}
+        - {x: -43, y: -352}
+        - {x: -64, y: -363}
+        - {x: -80, y: -368}
+        - {x: -95, y: -372}
+        - {x: -126, y: -373}
+        - {x: -133, y: -353}
+        - {x: -140, y: -324}
+        - {x: -145, y: -297}
+        - {x: -148, y: -256}
+        - {x: -107, y: -250}
+        - {x: -67, y: -256}
+        - {x: -36, y: -269}
+        - {x: -19, y: -282}
+        - {x: -1, y: -280}
+        - {x: 17, y: -282}
+        - {x: 38, y: -268}
+        - {x: 58, y: -259}
+        - {x: 83, y: -253}
+        - {x: 107, y: -251}
+        - {x: 148, y: -254}
+        - {x: 145, y: -290}
+        - {x: 138, y: -328}
+        - {x: 126, y: -373}
+      physicsShape: []
+      tessellationDetail: 1
+      bones: []
+      spriteID: 0603817c075021f48976c4bc3a923971
+      internalID: 999976075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      vampire-icon-vector_0: 999976075
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
