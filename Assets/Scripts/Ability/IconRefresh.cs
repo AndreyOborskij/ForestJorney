@@ -4,20 +4,31 @@ using UnityEngine.UI;
 
 public class IconRefresh : MonoBehaviour
 {
-    [SerializeField] private Image _ability;
+    [SerializeField] private Image _iconAbility;
+    [SerializeField] private Ability _ability;
 
     private Coroutine _avtiveCoroutine;
     private float _fillPrecent = 1f;
 
-    public void DrawFillRoutine(float workTime, bool isActive)
+    private void OnEnable()
     {
-        if (_avtiveCoroutine != null)
-            StopCoroutine(FillRoutine(workTime, isActive));
-
-        _avtiveCoroutine = StartCoroutine(FillRoutine(workTime, isActive));
+        _ability.Refreshed += DrawFillRoutine;
     }
 
-    private IEnumerator FillRoutine(float time, bool isActive)
+    private void OnDisable()
+    {
+        _ability.Refreshed -= DrawFillRoutine;
+    }
+
+    private void DrawFillRoutine(bool isActive, float time)
+    {
+        if (_avtiveCoroutine != null)
+            StopCoroutine(_avtiveCoroutine);
+
+        _avtiveCoroutine = StartCoroutine(FillRoutine(isActive, time));
+    }
+
+    private IEnumerator FillRoutine(bool isActive, float time)
     {
         float timer = 0;
 
@@ -25,12 +36,16 @@ public class IconRefresh : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (isActive == true)
-                _ability.fillAmount = _fillPrecent - (timer / time);
-            else
-                _ability.fillAmount = timer / time;
+            _iconAbility.fillAmount = CalculateFillAmount(isActive, timer, time);
 
             yield return null;
         }
+
+        _avtiveCoroutine = null;
+    }
+
+    private float CalculateFillAmount(bool isActive, float timer, float time)
+    {
+        return isActive ? _fillPrecent - (timer / time) : timer / time;
     }
 }

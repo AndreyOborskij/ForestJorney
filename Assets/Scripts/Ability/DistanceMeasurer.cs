@@ -29,6 +29,6 @@ public class DistanceMeasurer : MonoBehaviour
 
     private float Calculate(Enemy enemy)
     {
-        return Vector2.Distance(transform.position, enemy.transform.position);
+        return (enemy.transform.position - transform.position).sqrMagnitude;
     }
 }

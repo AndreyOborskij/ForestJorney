@@ -1,16 +1,26 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    [SerializeField] private IconRefresh _iconRefresh;
-    [SerializeField] private Visualization _visualization;
     [SerializeField] private InputReader _inputReader;
 
     private Coroutine _activeCorutine;
     private float _workTime = 6f;
     private float _refreshTime = 4f;
     private bool _canActive = true;
+    private WaitForSeconds _work;
+    private WaitForSeconds _refresh;
+
+    public event Action<bool> Actived;
+    public event Action<bool, float> Refreshed;
+
+    private void Awake()
+    {
+        _work = new WaitForSeconds(_workTime);
+        _refresh = new WaitForSeconds(_refreshTime);
+    }
 
     private void OnEnable()
     {
@@ -19,10 +29,10 @@ public class Ability : MonoBehaviour
 
     private void OnDisable()
     {
-        _inputReader.Interacted += HandleActivation;
+        _inputReader.Interacted -= HandleActivation;
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
     }
@@ -34,30 +44,26 @@ public class Ability : MonoBehaviour
 
     private void SetState(bool state)
     {
-        if (_canActive == true && state == true)
+        if (state && _canActive && _activeCorutine == null)
         {
-            if (_activeCorutine != null)
-            {
-                StopCoroutine(AbilityDuration());
-            }
-
             _activeCorutine = StartCoroutine(AbilityDuration());
         }
     }
 
     private IEnumerator AbilityDuration()
     {
-        _visualization.Toggle(_canActive);
-        _iconRefresh.DrawFillRoutine(_workTime, _canActive);
+        Actived?.Invoke(_canActive);
+        Refreshed?.Invoke(_canActive, _workTime);
 
-        yield return new WaitForSeconds(_workTime);
+        yield return _work;
 
         _canActive = false;
-        _visualization.Toggle(_canActive);
-        _iconRefresh.DrawFillRoutine(_refreshTime, _canActive);
+        Actived?.Invoke(_canActive);
+        Refreshed?.Invoke(_canActive, _workTime);
 
-        yield return new WaitForSeconds(_refreshTime);
+        yield return _refresh;
 
         _canActive = true;
+        _activeCorutine = null;
     }
 }

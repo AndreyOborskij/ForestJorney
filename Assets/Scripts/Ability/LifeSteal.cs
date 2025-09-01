@@ -57,12 +57,14 @@ public class LifeSteal : MonoBehaviour
 
     private IEnumerator Respond(Enemy enemy)
     {
+        var wait = new WaitForSeconds(_responseTime);
+
         while (enemy != null)
         {
             enemy.LoseHealth(_stealPower);
             Stole?.Invoke(_stealPower);
 
-            yield return new WaitForSeconds(_responseTime);
+            yield return wait;
         }
     }
 }

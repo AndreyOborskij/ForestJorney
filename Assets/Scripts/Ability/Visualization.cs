@@ -3,11 +3,22 @@ using UnityEngine;
 public class Visualization : MonoBehaviour
 {
     [SerializeField] private ChangerAbilityAnimations _changerAbilityAnimations;
-    [SerializeField] private GameObject _vamp;
+    [SerializeField] private GameObject _vampireAbility;
+    [SerializeField] private Ability _ability;
 
-    public void Toggle(bool isActive)
+    private void OnEnable()
     {
-        _vamp.SetActive(isActive);
+        _ability.Actived += Toggle;
+    }
+
+    private void OnDisable()
+    {
+        _ability.Actived -= Toggle;
+    }
+
+    private void Toggle(bool isActive)
+    {
+        _vampireAbility.SetActive(isActive);
         _changerAbilityAnimations.UpdateAbility(isActive);
     }
 }
