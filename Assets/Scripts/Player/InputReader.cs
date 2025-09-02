@@ -8,7 +8,7 @@ public class InputReader : MonoBehaviour
     private const string Horizontal = nameof(Horizontal);
     private const string Jump = nameof(Jump);
 
-    public event Action<bool> Interacted;
+    public event Action Interacted;
 
     private bool _isJump;
     private bool _isHit;
@@ -27,7 +27,7 @@ public class InputReader : MonoBehaviour
             _isHit = true;
 
         if (Input.GetKeyDown(ActiveAbility))
-            Interacted?.Invoke(true);
+            Interacted?.Invoke();
     }
 
     public bool GetIsJump() => GetBoolAsTrigger(ref _isJump);

@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Visualization : MonoBehaviour
 {
     [SerializeField] private ChangerAbilityAnimations _changerAbilityAnimations;
-    [SerializeField] private GameObject _vampireAbility;
+    [SerializeField] private LifeSteal _vampireAbility;
     [SerializeField] private Ability _ability;
 
     private void OnEnable()
@@ -18,7 +19,7 @@ public class Visualization : MonoBehaviour
 
     private void Toggle(bool isActive)
     {
-        _vampireAbility.SetActive(isActive);
+        _vampireAbility.gameObject.SetActive(isActive);
         _changerAbilityAnimations.UpdateAbility(isActive);
     }
 }

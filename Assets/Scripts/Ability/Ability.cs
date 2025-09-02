@@ -6,20 +6,20 @@ public class Ability : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
 
-    private Coroutine _activeCorutine;
+    private Coroutine _activeCoroutine;
     private float _workTime = 6f;
     private float _refreshTime = 4f;
     private bool _canActive = true;
-    private WaitForSeconds _work;
-    private WaitForSeconds _refresh;
+    private WaitForSeconds _abilityDurationWait;
+    private WaitForSeconds _cooldownWait;
 
     public event Action<bool> Actived;
     public event Action<bool, float> Refreshed;
 
     private void Awake()
     {
-        _work = new WaitForSeconds(_workTime);
-        _refresh = new WaitForSeconds(_refreshTime);
+        _abilityDurationWait = new WaitForSeconds(_workTime);
+        _cooldownWait = new WaitForSeconds(_refreshTime);
     }
 
     private void OnEnable()
@@ -37,33 +37,33 @@ public class Ability : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
     }
 
-    private void HandleActivation(bool state)
+    private void HandleActivation()
     {
-        SetState(state);
+        SetState();
     }
 
-    private void SetState(bool state)
+    private void SetState()
     {
-        if (state && _canActive && _activeCorutine == null)
+        if ( _canActive && _activeCoroutine == null)
         {
-            _activeCorutine = StartCoroutine(AbilityDuration());
+            _activeCoroutine = StartCoroutine(Activate());
         }
     }
 
-    private IEnumerator AbilityDuration()
+    private IEnumerator Activate()
     {
         Actived?.Invoke(_canActive);
         Refreshed?.Invoke(_canActive, _workTime);
 
-        yield return _work;
+        yield return _abilityDurationWait;
 
         _canActive = false;
         Actived?.Invoke(_canActive);
         Refreshed?.Invoke(_canActive, _workTime);
 
-        yield return _refresh;
+        yield return _cooldownWait;
 
         _canActive = true;
-        _activeCorutine = null;
+        _activeCoroutine = null;
     }
 }
