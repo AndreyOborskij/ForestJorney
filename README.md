@@ -65,3 +65,9 @@ AndreyOborskij
 
 ### Передвижение персонажа
 ![Movement](Screenshots/movement.png)
+
+## Демонстрация игрового процесса
+
+[▶ Посмотреть игровой процесс и способность вампиризма](Recordings/Movie_017.mp4)
+
+[▶ Дополнительная демонстрация](Recordings/Movie_008.mp4)
