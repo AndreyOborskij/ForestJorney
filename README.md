@@ -54,3 +54,14 @@
 AndreyOborskij
 
 Учебный проект для практики разработки игровых механик и применения принципов ООП в Unity.
+
+## Скриншоты игрового процесса
+
+### Игровой уровень
+![Gameplay](Screenshots/gameplay.png)
+
+### Способность вампиризма
+![LifeSteal](Screenshots/lifesteal.png)
+
+### Передвижение персонажа
+![Movement](Screenshots/movement.png)
